@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>
+      Create Form
+    </title>
+  </head>
+  <body>
+    <div id="title">
+      <h1>create a new acount</h1>
+    </div>
+    <form id="createAccountForm" class="round" method="post" action="create.py">
+      <div id="failure">
+        ErrorMsg
+      </div>
+      <div class="field">
+        username <input type="text" class="input" name="username" id="username" 
+                        placeholder="username">
+      </div>
+      <div class="field">
+        password <input type="password" class="input" name="password" id="password" 
+                        placeholder="password">
+      </div>
+      <div class="field">
+        email&nbsp&nbsp&nbsp <input type="text" class="input" name="email" id="email" 
+                                    placeholder="email">
+      </div>
+      <div>
+        <input type="submit" name="create" class="button" value="Create Account">
+      </div>
+      <div id="signIn">
+        I Have a Account, Click <a href="homepage.py">Here</a> to Sign In.
+      </div>
+  </body>
+</html>

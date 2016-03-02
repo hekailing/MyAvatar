@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Upload Form</title>
+  </head>
+  <body>
+    <div id="title">
+      <src="PictureUrl">
+        <h1>Welcome, AnyBody</h1>
+    </div>
+    <form enctype="multipart/form-data" method="post" action="savepicture.py">
+      <div>
+        Select a picture: <input type="file" name="filename">
+      </div>
+      <div>
+        <input type="submit" name="upload" class="button" value="Upload">
+      </div>
+    </form>
+    <div id="failure">
+      ErrorMsg
+    </div>
+  </body>
+</html>
