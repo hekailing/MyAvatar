@@ -15,7 +15,7 @@ def usernameCheck(username):
     '''
     if len(username) > 20:
         return False
-    else if re.match('^\w+$', username):
+    elif re.match('^\w+$', username):
         return True
     else:
         return False
@@ -30,7 +30,7 @@ def emailCheck(email):
     emailLen = len(email)
     if emailLen > 32 or emailLen <= 7:
         return False
-    else if re.match('^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$', email):
+    elif re.match('^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$', email):
         return True
     else:
         return False
@@ -49,13 +49,13 @@ if 'create' in fieldData:
     if username and password and email:
         if not usernameCheck(username):
             errorMsg = 'username format error'
-        else if not emailCheck(email):
+        elif not emailCheck(email):
             errorMsg = 'email format error'
-        else if account_info.usernameExist(username):
+        elif account_info.usernameExist(username):
             errorMsg = 'username is already used'
-        else if account_info.emailExist(email):
+        elif account_info.emailExist(email):
             errorMsg = 'email is already used'
-        else if account_info.insertAccount(username, password, email):
+        elif account_info.insertAccount(username, password, email):
             errorMsg = ''
         else:
             errorMsg = 'database operation failure'

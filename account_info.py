@@ -1,7 +1,10 @@
 #!/usr/bin/python
 # encoding=utf-8
+import os
 import string
 import random
+# ensure import MySQLdb success
+os.environ.setdefault("PYTHON_EGG_CACHE", "/tmp/.python-eggs")
 import MySQLdb
 
 import genhash
