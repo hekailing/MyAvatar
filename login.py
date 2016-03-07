@@ -15,6 +15,7 @@ if 'login' in fieldData:
     print "Set-Cookie:Password=%s;" % password
     if account_info.accountCheck(username, password):
         print "Set-Cookie:Password=%s;" % password
+        print "Set-Cookie:Email=%s;" % account_info.getEmailFromUserName(username)
         print "Content-Type:text/html\n"
         print readPageTmpl('welcome.html') \
             .replace('AnyBody', str(username)) \

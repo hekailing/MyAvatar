@@ -54,11 +54,7 @@ def accountCheck(username, password):
 def usernameExist(username):
     if username:
         sql = 'SELECT * FROM user_info WHERE username=%s'
-        # return execQuery(sql, (username,), True) is not None
-        ret = execQuery(sql, (username,), True)
-        print sql
-        print ret
-        return ret is not None
+        return execQuery(sql, (username,), True) is not None
     else:
         return False
 
@@ -66,13 +62,15 @@ def usernameExist(username):
 def emailExist(email):
     if email:
         sql = 'SELECT * FROM email2user WHERE email=%s'
-        # return execQuery(sql, (email,), True) is not None
-        ret = execQuery(sql, (email,), True)
-        print sql
-        print ret
-        return ret is not None
+        return execQuery(sql, (email,), True) is not None
     else:
         return False
+
+
+def getEmailFromUserName(username):
+    if username:
+        sql = 'SELECT email FROM user_info WHERE username=%s'
+        return execQuery(sql, (username,), True)
 
 
 def insertAccount(username, password, email):
