@@ -1,5 +1,7 @@
 #! /usr/bin/python
 import os
+from os import environ
+import string
 import cgi
 import cgitb
 
@@ -10,7 +12,13 @@ from page_template import readPageTmpl as readPageTmpl
 Save the uploaded picture to /tmp
 '''
 cgitb.enable()
-fieldData = cgi.FieldStorage()    
+fieldData = cgi.FieldStorage()
+cookies = { }
+if environ.has_key('HTTP_COOKIE'):
+    cookieStrs = string.split(environ['HTTP_COOKIE'], ';')
+    for cookie in map(string.strip, cookieStrs):
+        key, value = string.split(cookie, '=')
+        cookies[key] = value
 welcomePage = readPageTmpl('welcome.html')
 if 'upload' in fieldData:
     fileitem = fieldData['filename']
