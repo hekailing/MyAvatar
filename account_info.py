@@ -101,19 +101,6 @@ def insertAccount(username, password, email):
     return ret
 
         
-# discard
-# def updatePicture(email, picurl):
-#     emailHash = genhash.genMd5(email)
-#     sql = 'UPDATE email2pic SET picurl = %s WHERE email = %s'
-#     execQuery(sql, (picurl, emailHash))
-
-
-# discard
-# def getPictureURLFromEmail(emailHash):
-#     sql = 'SELECT picurl FROM email2pic WHERE email = %s'
-#     return execQuery(sql, (emailHash,))
- 
-
 def main():
     # userinfo
     username = 'hekai'
