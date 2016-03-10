@@ -21,6 +21,11 @@ def usernameCheck(username):
         return False
 
 
+def passwordCheck(password):
+    # password' length must between 6 and 32
+    pwlen = len(password)
+    return pwlen >= 6 and pwlen <= 32
+    
 def emailCheck(email):
     ''' 
     Check the email format    
@@ -49,6 +54,8 @@ if 'create' in fieldData:
     if username and password and email:
         if not usernameCheck(username):
             errorMsg = 'username format error'
+        elif not passwordCheck(password):
+            errorMsg = 'password invalid'
         elif not emailCheck(email):
             errorMsg = 'email format error'
         elif account_info.usernameExist(username):

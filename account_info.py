@@ -70,7 +70,7 @@ def emailExist(email):
 def getEmailFromUserName(username):
     if username:
         sql = 'SELECT email FROM user_info WHERE username=%s'
-        return execQuery(sql, (username,), True)
+        return execQuery(sql, (username,), True)[0]
 
 
 def insertAccount(username, password, email):

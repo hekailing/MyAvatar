@@ -4,10 +4,9 @@
   </head>
   <body>
     <div id="title">
-      <src="PictureUrl">
-        <h1>Welcome, AnyBody</h1>
+      <h1><img src="PictureUrl" height=100> Welcome, AnyBody</h1>
     </div>
-    <form enctype="multipart/form-data" method="post" action="savepicture.py">
+    <form enctype="multipart/form-data" method="post" action="homepage.py">
       <div>
         Select a picture: <input type="file" name="filename">
       </div>
@@ -18,5 +17,8 @@
     <div id="failure">
       ErrorMsg
     </div>
+    <form method="post" action="homepage.py">
+      <input type="submit" name="logout" class="button" value="Logout">        
+    </form>      
   </body>
 </html>
