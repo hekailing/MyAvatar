@@ -11,6 +11,7 @@ import genhash
 
 
 _mysqlAddr = 'localhost'
+_mysqlPort = 3306
 _mysqlUser = 'root'
 _rootPassword = '123456789'
 _avatardb = 'avatar_test'
@@ -23,7 +24,12 @@ def execQuery(query, param=None, fetch=False):
     Return False if execution failed, otherwise True or fetchdata.
     This function only tested with 'select', 'insert', 'update'
     '''
-    db = MySQLdb.connect(_mysqlAddr, _mysqlUser, _rootPassword, _avatardb, charset='utf8')
+    db = MySQLdb.connect(host=_mysqlAddr,
+                         user=_mysqlUser,
+                         passwd=_rootPassword,
+                         db=_avatardb,
+                         port=_mysqlPort,
+                         charset='utf8')
     cursor = db.cursor()
     try:
         cursor.execute(query, param)
