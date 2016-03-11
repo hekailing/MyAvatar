@@ -28,10 +28,11 @@ A simple avatar hosting website
       * 其他情况，只需要刷新欢迎页面
     * 刷新最后访问时间
     * 写入session文件
-2. 头像上传
+2. 头像上传  
+  目前头像暂不支持在创建账户的时候上传，只能在登陆后在欢迎页面上传并替换。头像通过表单上传，服务器端接收表单数据并将头像保存于其静态文件目录下的avatar目录中，文件名为邮箱名的MD5值
 3. 头像下载  
   头像下载支持两种方式，且无需登陆：
-  1. 直接访问静态文件，在浏览器地址栏中输入网址“SERVERNAME/avatar/HASH”。其中SERVAERNAME是服务器网址或域名，HASH是对用户邮箱进行MD5编码的值
+  1. 直接访问静态文件，在浏览器地址栏中输入网址“SERVERNAME/avatar/HASH”。其中SERVAERNAME是服务器网址或域名，HASH是对用户邮箱进行MD5编码的值。此外，还可直接运行MyAvatar中的getpicture.py文件，最终头像将保存为"邮件名.jpg|bmp|png"，getpicture.py执行前需要手动修改文件中的"_serverName"变量（位于15行）的值为服务器网址（http开头）。
   2. cgi访问homepage.py，并附加查询串，即“SERVERNAME/cgi-bin/MyAvatar/homepage.py?QUERYSTRING”。其中QUERYSTRING可以为以下两种格式：
     * “u=USERNAME”：其中USERNAME为用户名，即支持从用户名获取头像
     * “e=EMAIL”：其中EMAIL为邮箱，即支持从邮箱获取头像
