@@ -132,8 +132,12 @@ A simple avatar hosting website
 
 ## Install  
 1. 首先确保Apache服务器已安装并进行了cgi和静态文件目录的设置，Python2.7及mysql-python已安装。后续安装步骤中的cgi-bin_path为cgi目录的绝对路径，www_path为静态文件目录的绝对路径
-2. 从github上下载对应版本，将下载得到的MyAvatar目录复制到cgi-bin_path下
+2. 从github上下载对应版本，将下载得到的MyAvatar目录复制到cgi-bin_path下，或者直接在cgi-bin_path下clone：  
+  `cd cgi-bin_path`  
+  `git clone -b v0.1 --depth 1 git@github.com:hekailing/MyAvatar.git`
 3. 之后的步骤可以运行MyAvatar/setup/install.sh脚本完成，如果脚本运行出现问题，再进行如下手动安装：
-  1. 在静态文件目录中创建avatar目录，并修改权限
-  2. 创建数据库，在mysql中source MyAvatar_path/setup/avatar.sql。由于该脚本会粗暴地删除已有的与avatar数据库名字相同的数据库，因此执行之前请检查avatar.sql中的数据库名，如果与已有的数据库重复，则请修改。
+  1. 在静态文件目录中创建avatar目录，并修改权限，该步骤需要在root权限下进行  
+    `mkdir www_path/avatar`  
+    `chmod 777 www_path/avatar`  
+  2. 创建数据库，在mysql中source MyAvatar_path/setup/avatar.sql。由于该脚本可能删除已有的与avatar数据库名字相同的数据库，因此执行之前请检查avatar.sql中的数据库名，如果与已有的数据库重复，则请修改。
   3. 在MyAvatar/account_info.py中修改"_mysqlAddr"变量（第13行）的值为数据库地址，如果是在本机则不需要修改；修改"_mysqlPort"变量（第14行）的值为数据库端口；修改"_mysqlUser"变量（第15行）的值为数据库用户名;修改"_rootPassword"变量（第16行）的值为上述数据库用户的密码；修改"_avatardb"变量（第17行）的值为本站点使用的数据库的名字，例如'avatar_test'。
