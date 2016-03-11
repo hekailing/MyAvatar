@@ -130,8 +130,9 @@ A simple avatar hosting website
   </tr>
 </table>
 
-## Install
-1. 首先确保Apache服务器已安装并进行了cgi-bin和静态文件目录的设置，Python2.7及mysql-python已安装
-2. 从github上下载
-3. 在静态文件目录中创建avatar目录，并修改权限
-4. 创建数据库
+## Install  
+1. 首先确保Apache服务器已安装并进行了cgi和静态文件目录的设置，Python2.7及mysql-python已安装。后续安装步骤中的cgi-bin_path为cgi目录的绝对路径，www_path为静态文件目录的绝对路径
+2. 从github上下载对应版本，将下载得到的MyAvatar目录复制到cgi-bin_path下
+3. 之后的步骤可以运行MyAvatar/setup/install.sh脚本完成，如果脚本运行出现问题，再进行如下手动安装：
+  1. 在静态文件目录中创建avatar目录，并修改权限
+  2. 创建数据库，在mysql中source MyAvatar_path/setup/avatar.sql。执行之前请检查
