@@ -29,7 +29,12 @@ A simple avatar hosting website
     * 刷新最后访问时间
     * 写入session文件
 2. 头像上传
-3. 头像下载
+3. 头像下载  
+  头像下载支持两种方式，且无需登陆：
+  1. 直接访问静态文件，在浏览器地址栏中输入网址“SERVERNAME/avatar/HASH”。其中SERVAERNAME是服务器网址或域名，HASH是对用户邮箱进行MD5编码的值
+  2. cgi访问homepage.py，并附加查询串，即“SERVERNAME/cgi-bin/MyAvatar/homepage.py?QUERYSTRING”。其中QUERYSTRING可以为以下两种格式：
+    * “u=USERNAME”：其中USERNAME为用户名，即支持从用户名获取头像
+    * “e=EMAIL”：其中EMAIL为邮箱，即支持从邮箱获取头像
 4. 创建账户
 
   一个合法的账户需要满足下列条件：
