@@ -10,6 +10,8 @@ import MySQLdb
 import genhash
 
 
+_mysqlAddr = 'localhost'
+_mysqlUser = 'root'
 _rootPassword = '123456789'
 _avatardb = 'avatar_test'
 
@@ -21,7 +23,7 @@ def execQuery(query, param=None, fetch=False):
     Return False if execution failed, otherwise True or fetchdata.
     This function only tested with 'select', 'insert', 'update'
     '''
-    db = MySQLdb.connect('localhost', 'root', _rootPassword, _avatardb, charset='utf8')
+    db = MySQLdb.connect(_mysqlAddr, _mysqlUser, _rootPassword, _avatardb, charset='utf8')
     cursor = db.cursor()
     try:
         cursor.execute(query, param)
@@ -70,7 +72,8 @@ def emailExist(email):
 def getEmailFromUserName(username):
     if username:
         sql = 'SELECT email FROM user_info WHERE username=%s'
-        return execQuery(sql, (username,), True)[0]
+        results = execQuery(sql, (username,), True)
+        return results[0] if results else None
 
 
 def insertAccount(username, password, email):

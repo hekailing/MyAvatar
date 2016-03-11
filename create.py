@@ -2,6 +2,7 @@
 import cgi
 import cgitb
 import re
+import string
 
 from  page_template import readPageTmpl as readPageTmpl
 import account_info
@@ -40,40 +41,51 @@ def emailCheck(email):
     else:
         return False
 
-    
-cgitb.enable()
-fieldData = cgi.FieldStorage()
-print "Content-Type:text/html\n"
-createForm = readPageTmpl('createAccount.html')
-loginForm = readPageTmpl('login.html')
-# with a create form in http request
-if 'create' in fieldData:
-    username = fieldData.getvalue('username')
-    password = fieldData.getvalue('password')
-    email = fieldData.getvalue('email')
-    if username and password and email:
-        if not usernameCheck(username):
-            errorMsg = 'username format error'
-        elif not passwordCheck(password):
-            errorMsg = 'password invalid'
-        elif not emailCheck(email):
-            errorMsg = 'email format error'
-        elif account_info.usernameExist(username):
-            errorMsg = 'username is already used'
-        elif account_info.emailExist(email):
-            errorMsg = 'email is already used'
-        elif account_info.insertAccount(username, password, email):
-            errorMsg = ''
+
+def createAccount():
+    '''
+    Create account with username, password and email.
+1. Get username, password and email from FieldData
+2. Check username, password and email value
+3. Check username already used
+4. Check email already used
+5. Insert the account info into database
+6. Jump to login page if succeess
+    '''
+    fieldData = cgi.FieldStorage()
+    print "Content-Type:text/html\n"
+    createForm = readPageTmpl('createAccount.html')
+    loginForm = readPageTmpl('login.html')
+    # with a create form in http request
+    if 'create' in fieldData:
+        username = fieldData.getvalue('username')
+        password = fieldData.getvalue('password')
+        email = string.lower(fieldData.getvalue('email'))
+        if username and password and email:
+            if not usernameCheck(username):
+                errorMsg = 'username format error'
+            elif not passwordCheck(password):
+                errorMsg = 'password invalid'
+            elif not emailCheck(email):
+                errorMsg = 'email format error'
+            elif account_info.usernameExist(username):
+                errorMsg = 'username is already used'
+            elif account_info.emailExist(email):
+                errorMsg = 'email is already used'
+            elif account_info.insertAccount(username, password, email):
+                errorMsg = ''
+            else:
+                errorMsg = 'database operation failure'
+            if errorMsg:
+                print createForm.replace('ErrorMsg', errorMsg)
+            else:
+                print loginForm.replace('ErrorMsg', '')
         else:
-            errorMsg = 'database operation failure'
-            errorMsg = 'username or password is wrong'
-        if errorMsg:
-            print createForm.replace('ErrorMsg', errorMsg)
-        else:
-            print loginForm.replace('ErrorMsg', '')
+            print createForm.replace('ErrorMsg', 'Please fill in all information')
     else:
-        print createForm.replace('ErrorMsg', 'Please fill in all information')
-else:
-    print createForm.replace('ErrorMsg', '')
+        print createForm.replace('ErrorMsg', '')
     
 
+if __name__ == '__main__':
+    cgitb.enable()
+    createAccount()
