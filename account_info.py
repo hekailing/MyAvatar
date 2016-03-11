@@ -14,7 +14,7 @@ _mysqlAddr = 'localhost'
 _mysqlPort = 3306
 _mysqlUser = 'root'
 _rootPassword = '123456789'
-_avatardb = 'avatar_test'
+_avatardb = 'avatar'
 
 
 def execQuery(query, param=None, fetch=False):
