@@ -14,7 +14,7 @@ _mysqlAddr = 'localhost'
 _mysqlPort = 3306
 _mysqlUser = 'root'
 _rootPassword = '123456789'
-_avatardb = 'avatar'
+_avatardb = 'avatar_test'
 
 
 def execQuery(query, param=None, fetch=False):
@@ -92,7 +92,12 @@ def insertAccount(username, password, email):
     digitalpha = string.digits + string.lowercase
     salt = ''.join([random.choice(digitalpha) for i in range(64)])
     saltedPassword = genhash.genSha256(salt+password)
-    db = MySQLdb.connect('localhost', 'root', _rootPassword, _avatardb, charset='utf8')
+    db = MySQLdb.connect(host=_mysqlAddr,
+                         user=_mysqlUser,
+                         passwd=_rootPassword,
+                         db=_avatardb,
+                         port=_mysqlPort,
+                         charset='utf8')
     cursor = db.cursor()
     insertUserSql = ('INSERT INTO user_info (username, password, salt, email) '
                      'VALUES (%s, %s, %s, %s)')
